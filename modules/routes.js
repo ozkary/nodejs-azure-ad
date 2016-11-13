@@ -1,14 +1,13 @@
-"" 
 module.exports.init = function (app, __dirname, passport) {
-    
-      var azureOAuth = 'azure_ad_oauth2';
-    
+
     //secured routes
     var user = {};
-    app.get('/api/user', home)
+    app.get('/api/user', profile)
 
-    function home(req, resp){
-        resp.json(user);        
+    function profile(req, resp){
+
+        var authSession = req.cookies['AppServiceAuthSession'];
+        resp.json({session:authSession});        
     }
  
 };
