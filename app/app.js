@@ -62,7 +62,8 @@
              var url = 'api/user';
             
             $http.get(url).then(function(res){
-                var user = res.data['session'];                
+                var user = res.data['session'];            
+                   
                 deferred.resolve(user);
             },function(err){
                 deferred.reject(err);        
