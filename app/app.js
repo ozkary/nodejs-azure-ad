@@ -1,9 +1,9 @@
 (function () {
     'use strict';   
 
-    var app = angular.module('app', ['ngRoute']);   
+    var app = angular.module('app', ['ngRoute','ngCookies']);   
     app.factory('app.svc.auth', [ svcAuth]);
-    app.controller('app.ctrl.app', [ctrlApp]);
+    app.controller('app.ctrl.app', ['$cookies',ctrlApp]);
     
     function svcAuth() {
 
@@ -48,8 +48,13 @@
     *  controller area
     */   
 
-    function ctrlApp() {
+    function ctrlApp($cookies) {
         var ctrl = this;
-         ctrl.identity = null;       
+         ctrl.identity = null; 
+         var auth = $cookies.get('AppServiceAuthSession');
+         if(auth !== null){
+            ctrl.identity = auth;
+         }
+         console.log(auth); 
     }   
 })();
