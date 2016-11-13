@@ -1,0 +1,37 @@
+<div class="panel panel-default margin-top-40">
+    <div class="panel-heading">
+        <i class="fa fa-user fa-fw fa-2x"></i> <span>My Profile</span>
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body text-center" >  
+    <div id="unsecured" ng-if="!ctrl.identity">
+        <h1>Secured Content</h1>
+        <i class="fa fa-lock fa-5x"></i><br>
+        <div class="lead">
+           Please login
+        </div>
+        <input type="button" class="btn btn-primary" value="Login"></input>
+    </div>
+    <div id="secured" ng-if="ctrl.identity">
+        <h1>hi {{ctrl.identity.firstname}}</h1>
+        <div class="lead" ng-if="ctrl.user">
+            <div><img class="img-circle" ng-src="{{ctrl.user.picture}}" alt="my pic" /></div>
+
+            <div class="container">
+                <h2>My Profile</h2>
+                <ul class="list-group text-left">                    
+                    <li class="list-group-item"><b>eMail:</b> {{ctrl.user.username}}</li>
+                    <li class="list-group-item"><b>FirstName:</b> {{ctrl.user.firstname}}</li>
+                    <li class="list-group-item"><b>Last Name:</b> {{ctrl.user.lastname}}</li>                   
+                </ul>               
+            </div>                      
+        </div>    
+    </div>   
+    
+    </div>
+    <!-- /.panel-body -->
+</div>
+<!-- /.panel -->
+
+
+ 
