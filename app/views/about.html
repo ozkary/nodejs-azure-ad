@@ -14,7 +14,7 @@
     </div>
     <div id="secured" ng-if="ctrl.identity">
         <h1>Welcome {{ctrl.identity.firstname}}</h1>   
-        <i ng-if="!ctrl.user" class="fa fa-lock fa-5x"></i><br>    
+        <i ng-if="!ctrl.user" class="fa fa-unlock fa-5x"></i><br>    
         <div class="lead" ng-if="ctrl.user">
             <div><img class="img-circle" ng-src="{{ctrl.user.picture}}" alt="my pic" /></div>
 
