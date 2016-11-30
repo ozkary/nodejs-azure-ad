@@ -35,10 +35,11 @@ var $error = require('./modules/error.js');
 var $auth = require('./modules/auth.js');
 
 //enable the app modules
-$routes.init(app, __dirname);          //routes
-$client.init(app,express,  __dirname); //client app routes
-$error.init(app);                      //enable error handling
-$auth.init(app);                       //enable authorization
+var $users = {};                          //in-process user storage replace with redis or other storage
+var $passport = $auth.init(app, $users);  //enable authorization
+$routes.init(app, __dirname, $passport);  //routes
+$client.init(app,express,  __dirname);    //client app routes
+$error.init(app);                         //enable error handling
 
 var APP_PORT = process.env.PORT || 8080;
 var server = app.listen(APP_PORT, function () {
