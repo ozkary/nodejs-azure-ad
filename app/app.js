@@ -85,17 +85,15 @@
     function ctrlApp($auth) {
         var ctrl = this;
          ctrl.identity = null; 
-        
-         function loadContext(){
+
+         ctrl.login = function (){
             //get the user context
             $auth.isAuth().then(function(res){
                 ctrl.identity = res; 
             }, function(err){
                 ctrl.err = err;
             });
-         }
-        
-        loadContext();
+         }            
          
     }   
 })();
