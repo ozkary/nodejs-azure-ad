@@ -93,9 +93,7 @@
             }, function(err){
                 ctrl.err = err;
             });
-         }
-        
-        //loadContext();
+         }            
          
     }   
 })();
