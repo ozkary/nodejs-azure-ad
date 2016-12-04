@@ -10,8 +10,7 @@ module.exports.init = function (app, $users) {
                         clientSecret: 'adKZqN9It5z4OpOi9/ycsvH5NcdN7BQgD3dlO4mvoS0=',   //your app key                     
                         callbackURL: 'https://nodeaad.azurewebsites.net/onauth',        //add the return url with a route to handle                                         
                     },function (accessToken, refresh_token, params, profile, done) {
-                        //decodes the token and sends the information to the user profile handler
-                         console.log(profile);
+                        //decodes the token and sends the information to the user profile handler                        
                         var context = profile;                                              
                         done(null,context);
                     });

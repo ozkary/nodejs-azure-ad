@@ -1,15 +1,24 @@
 module.exports.init = function (app, __dirname, passport) {
-
-    //secured routes
-    var user =null;
-
+    
+    //secured api routes with no redirect
+    function authorizeApi (req, res, next) {
+        var auth = req.isAuthenticated();
+      
+        if (req.isAuthenticated()) {
+            return next();
+        }else{
+            res.send(401, 'Not authorized');
+        }
+    }
+   
     //authorize the routes
-    app.use('/api/user', passport.authorize);
+    app.use('/api/user', authorizeApi);
     app.use('/login', passport.authorize);
 
     //add the route handlers
     app.get('/api/user', profile)
     app.get('/login', login)
+
 
     //validate that the user profile is set on the authSession cookie
     function profile(req, resp){

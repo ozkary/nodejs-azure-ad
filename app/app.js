@@ -87,13 +87,16 @@
          ctrl.identity = null; 
 
          ctrl.login = function (){
-            //get the user context
-            $auth.isAuth().then(function(res){
-                ctrl.identity = res; 
-            }, function(err){
-                ctrl.err = err;
-            });
-         }            
-         
+             if (!ctrl.identity){
+                //get the user context
+                $auth.isAuth().then(function(res){
+                    ctrl.identity = res; 
+                }, function(err){
+                    ctrl.err = err;
+                });
+             }            
+         } 
+
+         ctrl.login();                   
     }   
 })();
