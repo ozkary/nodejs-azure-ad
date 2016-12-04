@@ -16,9 +16,10 @@ module.exports.init = function (app, $users) {
                     });
 
     //Azure resource you're requesting access
-    //strategy.tokenParams = function(options) {
-    //    return { resource: 'https://graph.windows.net' };
-    //};
+    //prevents the Resource identifier is not provided
+    strategy.tokenParams = function(options) {
+        return { resource: 'https://graph.windows.net' };
+    };
     
     //user profile handler to parse the data and create the user profile
     strategy.userProfile = function(accessToken, done) {       
