@@ -3,7 +3,7 @@ var oauthStrategy = require('passport-azure-ad-oauth2').Strategy;
 
 module.exports.init = function (app, $users) {
     var azureOAuth = 'azure_ad_oauth2';
-    var appServiceAuth = 'appServiceAuthSession';
+    //var appServiceAuth = 'appServiceAuthSession';
 
     var strategy = new oauthStrategy({
                         clientID: '2fead93d-50c3-4efa-8136-fcaf6ebfa813',               //app id
@@ -11,12 +11,13 @@ module.exports.init = function (app, $users) {
                         callbackURL: 'https://nodeaad.azurewebsites.net/onauth',        //add the return url with a route to handle                                         
                     },function (accessToken, refresh_token, params, profile, done) {
                         //decodes the token and sends the information to the user profile handler
+                         console.log(profile);
                         var context = profile;// || jwt.decode(params.id_token, '', true);  //wt-package like https://github.com/auth0/node-jsonwebtoken to decode id_token                                              
                         done(null,context);
                     });
 
     //Azure resource you're requesting access
-    //prevents the Resource identifier is not provided
+    //prevents the Resource identifier is not provided error
     strategy.tokenParams = function(options) {
         return { resource: 'https://graph.windows.net' };
     };
@@ -67,7 +68,7 @@ module.exports.init = function (app, $users) {
 
     //login extension method to validate the login state
     passport.login = function(){
-        return passport.authenticate(azureOAuth,{failureRedirect:'/noaccess',failureFlash:true});
+        return passport.authenticate(azureOAuth,{failureRedirect:'/',failureFlash:true});
     }
     
     //initialize passport
