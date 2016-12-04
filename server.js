@@ -20,6 +20,7 @@
  */
 var express = require('express')
 var app = express();
+var session = require('express-session'); //manage the session state
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 
@@ -27,6 +28,14 @@ var cookieParser = require('cookie-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(session({
+  secret: 'ozkay.com-nodejsazuread',resave:true, saveUninitialized:true,
+  cookie: {
+    maxAge: 1800000, 
+    httpOnly: true
+  }
+}));
+
 
 //$app implementation
 var $routes = require('./modules/routes.js');

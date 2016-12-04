@@ -71,7 +71,7 @@ module.exports.init = function (app, $users) {
         return passport.authenticate(azureOAuth,{failureRedirect:'/',failureFlash:true});
     }
     
-    //initialize passport
+    //initialize passport with session support
     app.use(passport.initialize());
     app.use(passport.session());
 
