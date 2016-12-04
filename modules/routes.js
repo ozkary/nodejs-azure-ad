@@ -22,7 +22,7 @@ module.exports.init = function (app, __dirname, passport) {
     }
 
     //route handler for the post authentication from identity provider
-    app.post('/onauth', passport.login(),
+    app.get('/onauth', passport.login(),
         function(req,res){
             login(req,res);   
         } 
