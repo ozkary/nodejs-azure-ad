@@ -12,7 +12,7 @@ module.exports.init = function (app, $users) {
                     },function (accessToken, refresh_token, params, profile, done) {
                         //decodes the token and sends the information to the user profile handler
                          console.log(profile);
-                        var context = profile;// || jwt.decode(params.id_token, '', true);  //wt-package like https://github.com/auth0/node-jsonwebtoken to decode id_token                                              
+                        var context = profile;                                              
                         done(null,context);
                     });
 
@@ -36,6 +36,7 @@ module.exports.init = function (app, $users) {
             profile.email = tokenObj.upn;     //upn is the email on AD
             profile.displayname = tokenObj.given_name + ' ' + tokenObj.family_name;                    
             console.log('user profile',profile);
+            done(null, profile);
         } catch (ex) {
             console.log("Unable to parse oauth2 token from WAAD.");
             done(ex, null);
