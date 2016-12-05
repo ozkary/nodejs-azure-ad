@@ -11,20 +11,18 @@
            Please login
         </div>
         <a type="button" title="Press to login with azure" class="btn btn-primary" href="/login">Login</a>
-        
+
     </div>
     <div id="secured" ng-if="ctrl.identity">
-        <h1>Welcome {{ctrl.identity.firstname}}</h1>   
+        <h1>Welcome {{ctrl.identity.email}}</h1>   
         <i ng-if="!ctrl.user" class="fa fa-unlock fa-5x"></i><br>    
-        <div class="lead" ng-if="ctrl.user">
-            <div><img class="img-circle" ng-src="{{ctrl.user.picture}}" alt="my pic" /></div>
+        <div class="lead" ng-if="ctrl.identity">
 
             <div class="container">
                 <h2>My Profile</h2>
                 <ul class="list-group text-left">                    
-                    <li class="list-group-item"><b>eMail:</b> {{ctrl.user.username}}</li>
-                    <li class="list-group-item"><b>FirstName:</b> {{ctrl.user.firstname}}</li>
-                    <li class="list-group-item"><b>Last Name:</b> {{ctrl.user.lastname}}</li>                   
+                    <li class="list-group-item"><b>eMail:</b> {{ctrl.identity.email}}</li>
+                    <li class="list-group-item"><b>Name:</b> {{ctrl.identity.displayname}}</li>                                       
                 </ul>               
             </div>                      
         </div>    
