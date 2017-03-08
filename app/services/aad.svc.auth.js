@@ -6,8 +6,8 @@
     * http://ozkary.com/ by Oscar Garcia
     * Licensed under the MIT license. Please see LICENSE for more information.
     *
-    * ozkary.authtoken
-    * azure ad authentication
+    * ozkary.aad
+    * azure ad authentication - service implementation
     * ozkary.com
     * ver. 1.0.0
     *
@@ -18,14 +18,13 @@
     *
     */
 
-    var app = angular.module('app', ['ngRoute']);   
-    app.factory('app.svc.auth', ['$q', '$http',svcAuth]);
-    app.controller('app.ctrl.app', ['app.svc.auth',ctrlApp]);
+    var app = angular.module('aad.app');   
+    app.factory('aad.svc.auth', ['$q', '$http',svcAuth]);    
     
     function svcAuth($q, $http) {
 
         //simple claims container for demo purposes
-        var claims = { 'name': 'Demo', 'app': true };
+        var claims = { };
         var context = null;
 
         function hasClaim(key) {
@@ -77,26 +76,5 @@
             auth: auth,
             isAuth:isAuth
         };
-    }
-    
-    /*
-    * main controller to check the user auth state
-    */   
-    function ctrlApp($auth) {
-        var ctrl = this;
-         ctrl.identity = null; 
-
-         ctrl.login = function (){
-             if (!ctrl.identity){
-                //get the user context
-                $auth.isAuth().then(function(res){
-                    ctrl.identity = res; 
-                }, function(err){
-                    ctrl.err = err;
-                });
-             }            
-         } 
-
-         ctrl.login();                   
-    }   
+    }      
 })();

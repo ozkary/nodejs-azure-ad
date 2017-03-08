@@ -17,10 +17,12 @@
     */
 /*
  * require modules
+ * use npm init to download all the dependencies
  */
+
 var express = require('express')
 var app = express();
-var session = require('express-session'); //manage the session state
+var session = require('express-session'); //manage the session state npm install express-session --save
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 
@@ -37,18 +39,20 @@ app.use(session({
 }));
 
 
-//$app implementation
+//app implementation required modules
 var $routes = require('./modules/routes.js');
 var $client = require('./modules/route-app.js');
 var $error = require('./modules/error.js');
 var $auth = require('./modules/auth.js');
+var $api = require('./modules/api/user-api.js');
 
 //enable the app modules
-var $users = {};                          //in-process user storage replace with redis or other storage
-var $passport = $auth.init(app, $users);  //enable authorization
-$routes.init(app, __dirname, $passport);  //routes
-$client.init(app,express,  __dirname);    //client app routes
-$error.init(app);                         //enable error handling
+var $users = {};                                        //in-process user storage replace with redis or other storage
+//var $passport = $auth.init(app, $users, process.env);   //enables authorization
+$routes.init(app, __dirname, $passport);                //routes
+$client.init(app,express,  __dirname);                  //client app routes
+$api.init(app);                                         //api routes
+$error.init(app);                                       //enable error handling
 
 var APP_PORT = process.env.PORT || 8080;
 var server = app.listen(APP_PORT, function () {

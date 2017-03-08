@@ -1,30 +1,26 @@
+/*!
+    * Copyright 2016 ozkary.com
+    * http://ozkary.com/ by Oscar Garcia
+    * Licensed under the MIT license. Please see LICENSE for more information.
+    *
+    * ozkary.passport
+    * azure ad authentication - server app routes
+    * ozkary.com
+    * ver. 1.0.0
+    *
+    * Created By oscar garcia 
+    *
+    * Update/Fix History
+    *   ogarcia 10/01/2016 initial implementation
+    *
+    */
 module.exports.init = function (app, __dirname, passport) {
     
-    //secured api routes with no redirect
-    function authorizeApi (req, res, next) {
-        var auth = req.isAuthenticated();
-      
-        if (req.isAuthenticated()) {
-            return next();
-        }else{
-            res.send(401, 'Not authorized');
-        }
-    }
-   
-    //authorize the routes
-    app.use('/api/user', authorizeApi);
+    //authorize the routes   
     app.use('/login', passport.authorize);
 
-    //add the route handlers
-    app.get('/api/user', profile)
+    //add the route handlers    
     app.get('/login', login)
-
-
-    //validate that the user profile is set on the authSession cookie
-    function profile(req, resp){
-
-        resp.json({session:req.user});    
-    }
 
     function login (req, res){
         res.sendFile( __dirname + "/app/index.html");
@@ -35,9 +31,7 @@ module.exports.init = function (app, __dirname, passport) {
         function(req,res){
             login(req,res);   
         } 
-
     ); 
-
   
     // logout
     app.get('/logout', function (req, res) {

@@ -1,14 +1,33 @@
-var passport = require('passport');
-var oauthStrategy = require('passport-azure-ad-oauth2').Strategy;
+/*!
+    * Copyright 2016 ozkary.com
+    * http://ozkary.com/ by Oscar Garcia
+    * Licensed under the MIT license. Please see LICENSE for more information.
+    *
+    * ozkary.passport
+    * azure ad authentication - passport libraries
+    * ozkary.com
+    * ver. 1.0.0
+    *
+    * Created By oscar garcia 
+    *
+    * Update/Fix History
+    *   ogarcia 10/01/2016 initial implementation
+    *
+    */
+/*
+ * required modules
+ * use npm init to download all the dependencies
+ */
 
-module.exports.init = function (app, $users) {
-    var azureOAuth = 'azure_ad_oauth2';
-    //var appServiceAuth = 'appServiceAuthSession';
+var passport = require('passport');                                 //npm install passport --save
+var oauthStrategy = require('passport-azure-ad-oauth2').Strategy;   //npm install passport-azure-ad-oauth2 --save
 
+module.exports.init = function (app, $users,config) {
+    var azureOAuth = 'azure_ad_oauth2';    
     var strategy = new oauthStrategy({
-                        clientID: '####',               //app id
-                        clientSecret: '####',   //your app key                     
-                        callbackURL: 'https://####.azurewebsites.net/onauth',        //add the return url with a route to handle                                         
+                        clientID: config.clientID,              //app id
+                        clientSecret: config.clientSecret,      //your app key                     
+                        callbackURL: config.callbackURL,        //add the return url with a route to handle                                         
                     },function (accessToken, refresh_token, params, profile, done) {
                         //decodes the token and sends the information to the user profile handler                        
                         var context = profile;                                              
@@ -37,7 +56,7 @@ module.exports.init = function (app, $users) {
             console.log('user profile',profile);
             done(null, profile);
         } catch (ex) {
-            console.log("Unable to parse oauth2 token from WAAD.");
+            console.log("Unable to parse oauth2 token from AAD.");
             done(ex, null);
         }
     };
