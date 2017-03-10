@@ -24,6 +24,14 @@ var oauthStrategy = require('passport-azure-ad-oauth2').Strategy;   //npm instal
 
 module.exports.init = function (app, $users,config) {
     var azureOAuth = 'azure_ad_oauth2';    
+
+     var azureOAuth = 'azure_ad_oauth2';    
+    if (!config.clientID){
+        config.clientID ="##";
+        config.clientSecret="##";
+        config.callbackURL="##";
+    }
+    
     var strategy = new oauthStrategy({
                         clientID: config.clientID,              //app id
                         clientSecret: config.clientSecret,      //your app key                     
