@@ -14,10 +14,6 @@
     *   ogarcia 10/01/2016 initial implementation
     *
     */
-/*
- * required modules
- * use npm init to download all the dependencies
- */
 module.exports.init = function (app,express,__dirname) {
     
      //set the static routes
