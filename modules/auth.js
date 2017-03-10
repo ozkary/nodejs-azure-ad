@@ -23,6 +23,7 @@ var passport = require('passport');                                 //npm instal
 var oauthStrategy = require('passport-azure-ad-oauth2').Strategy;   //npm install passport-azure-ad-oauth2 --save
 
 module.exports.init = function (app, $users,config) {
+
     var azureOAuth = 'azure_ad_oauth2';     
     
     var strategy = new oauthStrategy({
@@ -90,7 +91,7 @@ module.exports.init = function (app, $users,config) {
     passport.login = function(){
         return passport.authenticate(azureOAuth,{failureRedirect:'/',failureFlash:true});
     }
-    
+   
     //initialize passport with session support
     app.use(passport.initialize());
     app.use(passport.session());
