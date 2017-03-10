@@ -10,7 +10,7 @@
         <div class="lead">
            Please login
         </div>
-        <a type="button" title="Press to login with azure"  class=" btn btn-primary" href="/login">Login</a>
+        <a type="button" title="Press to login with azure"  class=" btn btn-primary" ng-click="ctrl.login(true)">Login</a>
 
     </div>
     <div id="secured" ng-if="ctrl.identity">
@@ -23,7 +23,8 @@
                 <ul class="list-group text-left">                    
                     <li class="list-group-item"><b>eMail:</b> {{ctrl.identity.email}}</li>
                     <li class="list-group-item"><b>Name:</b> {{ctrl.identity.displayname}}</li>                                       
-                </ul>               
+                </ul>     
+                 <a type="button" title="Press to logout"  class=" btn btn-primary" ng-click="ctrl.logout()">Logout</a>          
             </div>                      
         </div>    
     </div>   

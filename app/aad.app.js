@@ -18,6 +18,27 @@
     *
     */
 
-    var app = angular.module('aad.app', ['ngRoute']);   
+    var app = angular.module('aad.app', ['ngRoute','AdalAngular']);   
+
+    app.config(['$routeProvider', '$httpProvider', 'adalAuthenticationServiceProvider', function ($routeProvider, $httpProvider, adalProvider) {
+
+/*
+    $routeProvider.when("/login", {
+        controller: "homeCtrl",
+        templateUrl: "/App/Views/Home.html",
+    }).otherwise({ redirectTo: "/" });
+*/
+    //initialize client side access
+    var config = {cliendId:"59cf67aa-c3d6-429a-8551-52eb106d895c",tenant:'ozkarylive.onmicrosoft.com'};
+
+    adalProvider.init(
+        {
+            instance: 'https://login.microsoftonline.com/', 
+            tenant: config.tenant,
+            clientId: config.cliendId,
+            extraQueryParameter: 'nux=1',                   
+        },$httpProvider);
+   
+    }]);
          
 })();

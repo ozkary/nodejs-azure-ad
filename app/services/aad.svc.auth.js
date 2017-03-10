@@ -19,9 +19,9 @@
     */
 
     var app = angular.module('aad.app');   
-    app.factory('aad.svc.auth', ['$q', '$http',svcAuth]);    
+    app.factory('aad.svc.auth', ['$q', 'adalAuthenticationService',svcAuth]);    
     
-    function svcAuth($q, $http) {
+    function svcAuth($q, adalService) {
 
         //simple claims container for demo purposes
         var claims = { };
@@ -54,27 +54,38 @@
             return false;
         }
         
-        //simple validation of the user context
-        //calling api/user
-        function isAuth(){
+        //using ad service to login or return user context       
+        function isAuth(redirect){
              var deferred = $q.defer();
-             var url = 'api/user';
-            
-            $http.get(url).then(function(res){
-                var user = res.data['session'];            
-                   
-                deferred.resolve(user);
-            },function(err){
-                deferred.reject(err);        
-            })
+
+             var user = adalService.userInfo;
+
+             if (!user || !user.isAuthenticated){
+                 
+                 if (redirect){
+                    adalService.login();
+                 }
+                 
+             }else{
+                  var profile  = user.profile;
+                  profile.email = profile.upn;
+                  profile.displayname = profile.name;
+                  deferred.resolve(user.profile);
+             }
 
             return deferred.promise;
+        }
+
+        //logout the current session
+        function logout(){
+            adalService.logOut();
         }
 
         return {
             hasClaim: hasClaim,
             auth: auth,
-            isAuth:isAuth
+            isAuth:isAuth,
+            logout:logout
         };
     }      
 })();
