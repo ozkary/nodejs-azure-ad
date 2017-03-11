@@ -27,7 +27,7 @@ module.exports.init = function (app, __dirname) {
     
     // logout
     function logout (req, res) {
-        req.logout();      
+    
         res.redirect('/');                
     }
  
