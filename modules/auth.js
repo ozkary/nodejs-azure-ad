@@ -25,9 +25,9 @@ var oauthStrategy = require('passport-azure-ad-oauth2').Strategy;   //npm instal
 module.exports.init = function (app, $users,config) {
 
     var azureOAuth = 'azure_ad_oauth2';    
-    config.clientID = "59cf67aa-c3d6-429a-8551-52eb106d895c";
-    config.clientSecret = "miPViiDdUmiQ7v/8sQNvMfrcQIClMKb4MTF/dLsDjoQ="
-    config.callbackURL = "http://localhost:8080/onauth";
+    //config.clientID = "59cf67aa-c3d6-429a-8551-52eb106d895c";
+    //config.clientSecret = "miPViiDdUmiQ7v/8sQNvMfrcQIClMKb4MTF/dLsDjoQ="
+    //config.callbackURL = "http://localhost:8080/onauth";
 
     var strategy = new oauthStrategy({
                         clientID: config.clientID,              //app id
