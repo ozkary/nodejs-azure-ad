@@ -45,11 +45,12 @@
               $auth.logout();
          }
 
+         //delay on loading the security token
          $scope.$on('adal:loginSuccess', function(event, args) {
              console.log('adal:loginSuccess', args);
              ctrl.login();    
          });
 
-         ctrl.login();              
+         ctrl.login();       //on initial load find any user context       
     }   
 })();

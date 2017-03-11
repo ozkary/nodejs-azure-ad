@@ -36,24 +36,7 @@
             return result;
         }
 
-        function auth(user) {
-            user.error = null;
-            context = null;
-            try {
-                var key = window.btoa(user.email + user.password);
-
-                if (key === $appSettings.token) {
-                    context = user;
-                    context.claims = claims;
-                    return true;
-                }
-            }
-            catch (e) {
-            }
-            user.error = true;
-            return false;
-        }
-        
+       
         //using ad service to login or return user context       
         function isAuth(redirect){
              var deferred = $q.defer();
@@ -82,8 +65,7 @@
         }
 
         return {
-            hasClaim: hasClaim,
-            auth: auth,
+            hasClaim: hasClaim,           
             isAuth:isAuth,
             logout:logout
         };
