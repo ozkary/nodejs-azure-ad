@@ -7,7 +7,8 @@ module.exports.init = function (app) {
 
     //returns the user profile currently on the session
     function profile(req, resp){
-        var authSession = req.cookies['AppServiceAuthSession'];
+        //load user context
+        var authSession = null;  ///req.cookies['AppServiceAuthSession'];
         if (authSession != null) {
             user = "authenticated";
         }
