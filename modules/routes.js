@@ -44,7 +44,7 @@ module.exports.init = function (app, __dirname, passport) {
     function logout (req, res) {
         req.logout();
         req.session.destroy();
-        res.redirect('/');                
+        passport.logout(res);                   
     }
  
 };
