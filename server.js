@@ -40,10 +40,10 @@ app.use(session({
 
 
 //app implementation required modules
-var $routes = require('./modules/routes.js');
-var $client = require('./modules/route-app.js');
+var $routes = require('./modules/routes.js');       //server routes
+var $client = require('./modules/route-app.js');    //static resource
 var $error = require('./modules/error.js');
-var $api = require('./modules/api/user-api.js');
+var $api = require('./modules/api/user-api.js');    //user api
 
 //enable the app modules
 var $users = {};                                        //in-process user storage replace with redis or other storage

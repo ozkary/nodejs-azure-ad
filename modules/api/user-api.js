@@ -9,7 +9,7 @@ module.exports.init = function (app) {
     function profile(req, resp){
         var authSession = req.cookies['AppServiceAuthSession'];
         if (authSession != null) {
-            user = authSession;
+            user = "authenticated";
         }
         resp.json({ session: user });   
     }

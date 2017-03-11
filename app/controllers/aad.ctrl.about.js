@@ -23,7 +23,7 @@
     
    
     /*
-    * main controller to check the user auth state
+    * main controller to check the user auth context
     */   
     function ctrlAbout($auth) {
         var ctrl = this;

@@ -36,24 +36,7 @@
             return result;
         }
 
-        function auth(user) {
-            user.error = null;
-            context = null;
-            try {
-                var key = window.btoa(user.email + user.password);
-
-                if (key === $appSettings.token) {
-                    context = user;
-                    context.claims = claims;
-                    return true;
-                }
-            }
-            catch (e) {
-            }
-            user.error = true;
-            return false;
-        }
-        
+       
         //simple validation of the user context
         //calling api/user
         function isAuth(){
@@ -72,8 +55,7 @@
         }
 
         return {
-            hasClaim: hasClaim,
-            auth: auth,
+            hasClaim: hasClaim,            
             isAuth:isAuth
         };
     }      

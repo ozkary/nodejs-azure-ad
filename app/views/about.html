@@ -9,8 +9,7 @@
         <i class="fa fa-lock fa-5x"></i><br>
         <div class="lead">
            Please login
-        </div>
-        <a type="button" title="Press to login with azure"  class="hidden btn btn-primary" href="/login">Login</a>
+        </div>        
 
     </div>
     <div id="secured" ng-if="ctrl.identity">
@@ -23,7 +22,8 @@
                 <ul class="list-group text-left">                    
                     <li class="list-group-item"><b>eMail:</b> {{ctrl.identity.email}}</li>
                     <li class="list-group-item"><b>Name:</b> {{ctrl.identity.displayname}}</li>                                       
-                </ul>               
+                </ul>   
+                <a href="/logout" class="btn btn-primary">Logout</a>           
             </div>                      
         </div>    
     </div>   
