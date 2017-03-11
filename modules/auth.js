@@ -23,7 +23,13 @@ var passport = require('passport');                                 //npm instal
 var oauthStrategy = require('passport-azure-ad-oauth2').Strategy;   //npm install passport-azure-ad-oauth2 --save
 
 module.exports.init = function (app, $users,config) {
+
     var azureOAuth = 'azure_ad_oauth2';    
+    config.clientID = "59cf67aa-c3d6-429a-8551-52eb106d895c";
+    config.clientSecret = "miPViiDdUmiQ7v/8sQNvMfrcQIClMKb4MTF/dLsDjoQ="
+    config.logoutUrl = "https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=";
+    config.callbackURL = "http://localhost:8080/onauth";
+
     var strategy = new oauthStrategy({
                         clientID: config.clientID,              //app id
                         clientSecret: config.clientSecret,      //your app key                     
@@ -89,7 +95,13 @@ module.exports.init = function (app, $users,config) {
     passport.login = function(){
         return passport.authenticate(azureOAuth,{failureRedirect:'/',failureFlash:true});
     }
-    
+
+    //logout from azure
+    passport.logout = function(res){
+        var base_url = 'https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=' +encodeURIComponent(config.callbackURL.replace('onauth',''));        
+        res.redirect(base_url);    
+    }
+   
     //initialize passport with session support
     app.use(passport.initialize());
     app.use(passport.session());

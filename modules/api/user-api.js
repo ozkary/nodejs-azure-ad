@@ -1,5 +1,7 @@
 module.exports.init = function (app) {
     
+    var user = null;
+    
     //add the route handlers
     app.get('/api/user', profile)  
 

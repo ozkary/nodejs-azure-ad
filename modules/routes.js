@@ -20,9 +20,9 @@ module.exports.init = function (app, __dirname) {
     app.get('/login', login)
     app.get('/logout', logout)
 
-    //login
+    //login 
     function login (req, res){
-        res.sendFile( __dirname + "/app/index.html");
+        
     }  
     
     // logout

@@ -43,7 +43,6 @@ app.use(session({
 var $routes = require('./modules/routes.js');
 var $client = require('./modules/route-app.js');
 var $error = require('./modules/error.js');
-var $auth = require('./modules/auth.js');
 var $api = require('./modules/api/user-api.js');
 
 //enable the app modules
