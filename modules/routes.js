@@ -22,7 +22,7 @@ module.exports.init = function (app, __dirname) {
 
     //login 
     function login (req, res){
-        
+        //not implemented
     }  
     
     // logout
