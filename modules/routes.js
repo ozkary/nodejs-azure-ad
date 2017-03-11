@@ -19,7 +19,7 @@ module.exports.init = function (app, __dirname, passport) {
     //authorize the routes  using passport
     if (passport){
 
-        app.use('/login', passport.authorize);
+        app.use('/login', passport.authorize);  //auth filter
 
         //route handler for the post authentication from identity provider
         app.get('/onauth', passport.login(),

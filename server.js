@@ -43,13 +43,13 @@ app.use(session({
 var $routes = require('./modules/routes.js');
 var $client = require('./modules/route-app.js');
 var $error = require('./modules/error.js');
-var $auth = require('./modules/auth.js');
+var $auth = require('./modules/auth.js');  
 var $api = require('./modules/api/user-api.js');
 
 //enable the app modules
 var $users = {};                                        //in-process user storage replace with redis or other storage
 var $passport = $auth.init(app, $users, process.env);   //enables authorization
-$routes.init(app, __dirname, $passport);             //server routes
+$routes.init(app, __dirname, $passport);                //server routes
 $client.init(app,express,  __dirname);                  //client app routes
 $api.init(app);                                         //api routes
 $error.init(app);                                       //enable error handling
