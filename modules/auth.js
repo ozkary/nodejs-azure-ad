@@ -25,16 +25,17 @@ var oauthStrategy = require('passport-azure-ad-oauth2').Strategy;   //npm instal
 module.exports.init = function (app, $users,config) {
 
     var azureOAuth = 'azure_ad_oauth2';    
-    //config.clientID = "59cf67aa-c3d6-429a-8551-52eb106d895c";
-    //config.clientSecret = "miPViiDdUmiQ7v/8sQNvMfrcQIClMKb4MTF/dLsDjoQ="
-    //config.callbackURL = "http://localhost:8080/onauth";
+    //comment out when deploying or use a local config object
+    config.clientID = "59cf67aa-c3d6-429a-8551-52eb106d895c";
+    config.clientSecret = "miPViiDdUmiQ7v/8sQNvMfrcQIClMKb4MTF/dLsDjoQ="
+    config.callbackURL = "http://localhost:8080/onauth";
 
     var strategy = new oauthStrategy({
                         clientID: config.clientID,              //app id
                         clientSecret: config.clientSecret,      //your app key                     
                         callbackURL: config.callbackURL,        //add the return url with a route to handle                                         
                     },function (accessToken, refresh_token, params, profile, done) {
-                        //decodes the token and sends the information to the user profile handler                        
+                        //from decode token and sends the information to the user profile handler                        
                         var context = profile;                                              
                         done(null,context);
                     });
